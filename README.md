@@ -13,12 +13,14 @@
 
 ## 安装
 
-在 [Releases](https://github.com/Aetherfield/hb-session-bridge/releases) 下载 `hb-session-bridge-<版本>.zip` 并解压。也可以让 hb 代为下载（会核对 SHA-256）：`hb login --method ext --download-ext`。
+最省事：直接运行 `hb login lafish --method ext`。hb 会下载它支持的那个版本，核对 SHA-256 后解压好，并告诉你目录在哪。
+
+也可以自己从 [Releases](https://github.com/Aetherfield/hb-session-bridge/releases) 下载 `hb-session-bridge-<版本>.zip`，再用 `hb login lafish --method ext --ext-zip <下载的 zip>` 交给 hb 核对并解压；或者自己解压。
 
 **Chrome、Edge、Brave 等**
 
 1. 打开 `chrome://extensions`（Edge 是 `edge://extensions`），开启「开发者模式」
-2. 点「加载已解压的扩展程序」，选解压出来的目录（里面有 `manifest.json`）
+2. 点「加载已解压的扩展程序」，选 hb 告诉你的目录（或你自己解压出的目录，里面有 `manifest.json`）
 
 **Firefox 系**
 
