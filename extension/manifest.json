@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "hb session bridge",
+  "version": "0.2.0",
+  "description": "把浏览器里已登录的红包站会话交给本机的 hb 命令行。只和 127.0.0.1 通信。",
+  "permissions": ["cookies"],
+  "host_permissions": [
+    "https://hb.lafi.sh/*",
+    "https://credit.linux.do/*",
+    "https://hb.unsnow.org/*",
+    "http://127.0.0.1/*"
+  ],
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "hb",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "hb-session-bridge@local",
+      "strict_min_version": "121.0"
+    }
+  }
+}

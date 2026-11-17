@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark light">
+<title>hb</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="name">hb</span>
+    <span class="sub">session bridge</span>
+    <span class="ver" id="ver"></span>
+  </header>
+
+  <main>
+    <section class="step">
+      <h1><span class="n">1</span>在终端里运行</h1>
+      <div class="term" aria-label="终端命令">
+        <span class="prompt">$</span>
+        <code id="cmd">hb login lafish --method ext</code>
+        <button class="copy" id="copy" type="button" title="复制命令" aria-label="复制命令">复制</button>
+      </div>
+      <p class="dim">也可以是 <code>unsnow</code>。终端会显示一个 6 位配对码。</p>
+    </section>
+
+    <section class="step">
+      <h1><span class="n">2</span>输入配对码</h1>
+      <div class="code" id="cells" role="group" aria-label="6 位配对码">
+        <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="第 1 位" autofocus>
+        <input inputmode="numeric" maxlength="1" aria-label="第 2 位">
+        <input inputmode="numeric" maxlength="1" aria-label="第 3 位">
+        <input inputmode="numeric" maxlength="1" aria-label="第 4 位">
+        <input inputmode="numeric" maxlength="1" aria-label="第 5 位">
+        <input inputmode="numeric" maxlength="1" aria-label="第 6 位">
+      </div>
+      <button class="send" id="send" type="button" disabled>发送会话到 hb</button>
+    </section>
+
+    <ol class="log" id="log" aria-live="polite"></ol>
+  </main>
+
+  <footer class="foot dim">
+    只发给本机 <code>127.0.0.1</code> 上正在等待的 hb，只带这个站的登录 cookie。
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>

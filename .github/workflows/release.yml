@@ -1,0 +1,30 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: version matches the tag
+        run: |
+          v=$(jq -r .version extension/manifest.json)
+          [ "v$v" = "${GITHUB_REF_NAME}" ] || { echo "manifest $v != tag ${GITHUB_REF_NAME}"; exit 1; }
+      - name: zip
+        run: |
+          name="hb-session-bridge-${GITHUB_REF_NAME#v}.zip"
+          cd extension
+          # fixed timestamps and order, so the same files give the same zip
+          find . -type f | sort > ../files.txt
+          touch -d '2026-01-01T00:00:00Z' $(cat ../files.txt)
+          TZ=UTC zip -X -D -q "../$name" $(cat ../files.txt)
+          cd ..
+          sha256sum "$name" > "$name.sha256"
+          cat "$name.sha256"
+      - name: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" hb-session-bridge-*.zip hb-session-bridge-*.zip.sha256 --title "${GITHUB_REF_NAME}" --notes "解压后在浏览器里「加载已解压的扩展程序」，见 README。"
